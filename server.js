@@ -3,6 +3,8 @@ const cors = require('cors');
 
 const usersRouter = require('./routes/usersRouter.js');
 const habitsRouter = require('./routes/habitsRouter.js');
+const logsRouter = require('./routes/logsRouter.js');
+
 
 const PORT = 3001;
 
@@ -17,3 +19,4 @@ app.use(express.json());
 
 app.use('/user', usersRouter);
 app.use('/habits', habitsRouter);
+app.use('/logs', logsRouter);
