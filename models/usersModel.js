@@ -73,7 +73,7 @@ const _deleteUser = async (email) => {
         });
     } catch (error) {
         console.error('Transaction error:', error);
-        return { success: false, message: `Error updating user: ${error.message}` };
+        return { success: false, message: `Error deleting user: ${error.message}` };
     }
 };
 
