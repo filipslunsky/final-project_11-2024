@@ -5,6 +5,7 @@ const usersRouter = require('./routes/usersRouter.js');
 const habitsRouter = require('./routes/habitsRouter.js');
 const logsRouter = require('./routes/logsRouter.js');
 
+require('./jobs/cronTest.js');
 
 const PORT = 3001;
 
