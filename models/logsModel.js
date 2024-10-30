@@ -41,7 +41,27 @@ const _getAllLogsByHabitId = async (habitId) => {
     }
 };
 
+const _deleteLog = async (habitId, date) => {
+    try {
+        return await db.transaction(async (trx) => {
+            const logId = await trx('habit_logs')
+                .select('log_id')
+                .where({ habit_id: habitId, date })
+                .first();
+            if (!logId) {
+                return { success: false, message: 'Log does not exist' };
+            }
+            await trx('habit_logs').where({log_id: logId.log_id}).delete();
+            return { success: true, message: `Log successfully deleted for ${date}` };
+        });
+    } catch (error) {
+        console.error('Transaction error:', error);
+        return { success: false, message: `Error deleting log: ${error.message}` };
+    }
+};
+
 module.exports = {
     _addNewLog,
     _getAllLogsByHabitId,
+    _deleteLog,
 };
