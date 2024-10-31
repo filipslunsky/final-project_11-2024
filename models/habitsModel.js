@@ -11,13 +11,22 @@ const _addNewHabit = async (name, category, frequency, email) => {
                 return { success: false, message: 'User not found' };
             }
 
-            await trx('habits').insert({
+            const habit = await trx('habits').insert({
                 name,
                 category,
                 frequency,
                 user_id: userId.user_id
+            }).returning(['habit_id', 'name', 'category', 'frequency']);
+
+            const habitId = habit[0].habit_id;
+
+            await trx('habit_streaks').insert({
+                habit_id: habitId,
+                current_streak: 0,
+                max_streak: 0
             });
-            return { success: true, message: 'habit successfully created' };
+
+            return { success: true, message: 'habit successfully created', habit};
         });
     } catch (error) {
         console.error('Transaction error:', error);
@@ -36,7 +45,17 @@ const _getAllHabitsByEmail = async (email) => {
                 return { success: false, message: 'User not found' };
             }
 
-            const habits = await trx('habits').select('habit_id', 'name', 'category', 'frequency').where({user_id: userId.user_id});
+            const habits = await trx('habits')
+                .select(
+                    'habits.habit_id',
+                    'habits.name',
+                    'habits.category',
+                    'habits.frequency',
+                    'habit_streaks.current_streak',
+                    'habit_streaks.max_streak'
+                )
+                .join('habit_streaks', 'habit_streaks.habit_id', 'habits.habit_id')
+                .where({ 'habits.user_id': userId.user_id });
             return { success: true, habits };
         });
     } catch (error) {
