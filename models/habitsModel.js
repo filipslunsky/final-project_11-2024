@@ -52,7 +52,8 @@ const _getAllHabitsByEmail = async (email) => {
                     'habits.category',
                     'habits.frequency',
                     'habit_streaks.current_streak',
-                    'habit_streaks.max_streak'
+                    'habit_streaks.max_streak',
+                    'habit_streaks.completed'
                 )
                 .join('habit_streaks', 'habit_streaks.habit_id', 'habits.habit_id')
                 .where({ 'habits.user_id': userId.user_id });

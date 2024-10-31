@@ -1,5 +1,10 @@
 const { db } = require('../config/db.js');
 
+const {
+    continueStreak,
+    unContinueStreak
+} = require('../jobs/streaksJob.js');
+
 const _addNewLog = async (habitId, date) => {
     try {
         return await db.transaction(async (trx) => {
@@ -13,6 +18,9 @@ const _addNewLog = async (habitId, date) => {
                 habit_id: habitId,
                 date,
             });
+
+            continueStreak(habitId);
+            
             return { success: true, message: 'Log successfully created' };
         });
     } catch (error) {
@@ -52,6 +60,9 @@ const _deleteLog = async (habitId, date) => {
                 return { success: false, message: 'Log does not exist' };
             }
             await trx('habit_logs').where({log_id: logId.log_id}).delete();
+
+            unContinueStreak(habitId);
+            
             return { success: true, message: `Log successfully deleted for ${date}` };
         });
     } catch (error) {
