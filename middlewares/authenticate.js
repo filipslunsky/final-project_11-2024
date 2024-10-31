@@ -23,7 +23,6 @@ const authenticateLoginToken = (req, res, next) => {
     });
 };
 
-
 module.exports = {
     authenticateLoginToken
 };

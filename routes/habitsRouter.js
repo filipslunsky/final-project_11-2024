@@ -9,10 +9,9 @@ const {
 
 const habitsRouter = Router();
 
-habitsRouter.post('/', addNewHabit);
-habitsRouter.get('/all', getAllHabitsByEmail);
-habitsRouter.put('/', updateHabit);
-habitsRouter.delete('/', deleteHabit);
-
+habitsRouter.post('/', authenticateLoginToken, addNewHabit);
+habitsRouter.get('/',authenticateLoginToken, getAllHabitsByEmail);
+habitsRouter.put('/', authenticateLoginToken, updateHabit);
+habitsRouter.delete('/', authenticateLoginToken, deleteHabit);
 
 module.exports = habitsRouter;

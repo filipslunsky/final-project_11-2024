@@ -8,8 +8,8 @@ const {
 
 const logsRouter = Router();
 
-logsRouter.post('/', addNewLog);
-logsRouter.get('/', getAllLogsByHabitId);
-logsRouter.delete('/', deleteLog);
+logsRouter.post('/', authenticateLoginToken, addNewLog);
+logsRouter.get('/', authenticateLoginToken, getAllLogsByHabitId);
+logsRouter.delete('/', authenticateLoginToken, deleteLog);
 
 module.exports = logsRouter;
