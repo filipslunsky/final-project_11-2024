@@ -12,6 +12,6 @@ const habitsRouter = Router();
 habitsRouter.post('/', authenticateLoginToken, addNewHabit);
 habitsRouter.post('/all',authenticateLoginToken, getAllHabitsByEmail);
 habitsRouter.put('/', authenticateLoginToken, updateHabit);
-habitsRouter.delete('/', authenticateLoginToken, deleteHabit);
+habitsRouter.delete('/:id', authenticateLoginToken, deleteHabit);
 
 module.exports = habitsRouter;

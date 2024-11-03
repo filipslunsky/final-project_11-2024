@@ -2,6 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const HABITS_URL = 'http://127.0.0.1:3001/habits';
+const AUTHORIZATION_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2Mzk5OTYsImV4cCI6MTczMDcyNjM5Nn0.vCAJHcIKvODgLBwacabHeXnVNQte8kUbhDuvzyG3gZc';
+const headers = {
+    'Authorization': AUTHORIZATION_TOKEN,
+    'Content-Type': 'application/json'
+};
 
 interface Habit {
   habit_id: number;
@@ -24,7 +29,20 @@ interface HabitsState {
   habits: Habit[];
   habitsStatus: 'idle' | 'loading' | 'success' | 'failed';
   addStatus: 'idle' | 'loading' | 'success' | 'failed';
+  deleteStatus: 'idle' | 'loading' | 'success' | 'failed';
+  editStatus: 'idle' | 'loading' | 'success' | 'failed';
 };
+
+interface DeleteHabit {
+    habitId: number;
+};
+
+interface EditHabit {
+    habitId: number;
+    name: string;
+    category: string;
+    frequency: string;
+  };
 
 interface AllHabitsApiResponse {
     success: boolean;
@@ -37,33 +55,46 @@ interface AddHabitApiResponse {
     habit: NewHabit[];
 };
 
+interface DeleteHabitApiResponse {
+    success: boolean;
+    message: string;
+};
+
+interface EditApiResponse {
+    success: boolean;
+    habitId: number;
+    name: string;
+    category: string;
+    frequency: string;
+};
+
 const initialState: HabitsState = {
   habits: [],
   habitsStatus: 'idle',
   addStatus: 'idle',
+  deleteStatus: 'idle',
+  editStatus: 'idle',
 };
 
 export const getHabits = createAsyncThunk('habits/getHabits', async () => {
   const response = await axios.post<AllHabitsApiResponse>(`${HABITS_URL}/all`,
-    { email: 'two@gmail.com' },
-    {
-      headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2Mzk5OTYsImV4cCI6MTczMDcyNjM5Nn0.vCAJHcIKvODgLBwacabHeXnVNQte8kUbhDuvzyG3gZc',
-        'Content-Type': 'application/json'
-      }
-    }
-  );
+    { email: 'two@gmail.com' }, { headers });
   return response.data.habits;
 });
 
 export const addHabit = createAsyncThunk('habits/addHabit', async (newHabit: NewHabit) => {
-    const response = await axios.post<AddHabitApiResponse>(`${HABITS_URL}`, newHabit, {
-        headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2Mzk5OTYsImV4cCI6MTczMDcyNjM5Nn0.vCAJHcIKvODgLBwacabHeXnVNQte8kUbhDuvzyG3gZc',
-            'Content-Type': 'application/json'
-          }
-    })
+    const response = await axios.post<AddHabitApiResponse>(`${HABITS_URL}`, newHabit, { headers });
     return response.data.habit;
+});
+
+export const deleteHabit = createAsyncThunk('habits/deleteHabit', async (deleteHabit: DeleteHabit) => {
+    const response = await axios.delete<DeleteHabitApiResponse>(`${HABITS_URL}/${deleteHabit.habitId}`, { headers });
+    return response.data;
+});
+
+export const editHabit = createAsyncThunk('habits/editHabit', async (editHabit: EditHabit) => {
+    const response = await axios.put<EditApiResponse>(`${HABITS_URL}`, editHabit, { headers });
+    return response.data.success;
 });
 
 const habitsSlice = createSlice({
@@ -72,6 +103,12 @@ const habitsSlice = createSlice({
   reducers: {
     resetAddStatus: (state) => {
         state.addStatus = 'idle';
+      },
+      resetDeleteStatus: (state) => {
+        state.deleteStatus = 'idle';
+      },
+      resetEditStatus: (state) => {
+        state.editStatus = 'idle';
       }
   },
   extraReducers: (builder) => {
@@ -95,8 +132,26 @@ const habitsSlice = createSlice({
       .addCase(addHabit.fulfilled, (state) => {
         state.addStatus = 'success';
       })
+      .addCase(deleteHabit.pending, (state) => {
+        state.deleteStatus = 'loading';
+      })
+      .addCase(deleteHabit.rejected, (state) => {
+        state.deleteStatus = 'failed';
+      })
+      .addCase(deleteHabit.fulfilled, (state) => {
+        state.deleteStatus = 'success';
+      })
+      .addCase(editHabit.pending, (state) => {
+        state.editStatus = 'loading';
+      })
+      .addCase(editHabit.rejected, (state) => {
+        state.editStatus = 'failed';
+      })
+      .addCase(editHabit.fulfilled, (state) => {
+        state.editStatus = 'success';
+      })
   },
 });
 
-export const { resetAddStatus } = habitsSlice.actions;
+export const { resetAddStatus, resetDeleteStatus, resetEditStatus } = habitsSlice.actions;
 export default habitsSlice.reducer;

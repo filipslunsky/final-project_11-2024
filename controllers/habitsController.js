@@ -51,9 +51,9 @@ const updateHabit = async (req, res) => {
 };
 
 const deleteHabit = async (req, res) => {
-    const { habitId } = req.body;
+    const { id } = req.params;
     try {
-        const data = await _deleteHabit(habitId);
+        const data = await _deleteHabit(id);
         if (data.success) {
             res.status(200).json(data);
         } else {

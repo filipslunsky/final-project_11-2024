@@ -1,21 +1,35 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store.ts";
 import { useEffect } from "react";
-import { getHabits } from './state/slice.ts';
+import { getHabits, deleteHabit, resetDeleteStatus } from './state/slice.ts';
 import History from "../logs/History.tsx";
 
 const HabitDetail: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const habits = useSelector((state: RootState) => state.habits.habits);
     const { id } = useParams<{ id: string }>();
+    const status = useSelector((state: RootState) => state.habits.deleteStatus);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getHabits());
     }, [dispatch]);
 
     const habit = habits.find(habit => habit.habit_id === Number(id));
+
+    const handleDelete = () => {
+        const deleteItem = { habitId: Number(id) };
+        dispatch(deleteHabit(deleteItem));
+    };
+
+    useEffect(() => {
+        if (status === 'success') {
+            navigate('/habits');
+            dispatch(resetDeleteStatus());
+        }
+    }, [status, navigate, dispatch]);
 
     return (
         <>
@@ -32,6 +46,10 @@ const HabitDetail: React.FC = () => {
             ) : (
                 <p>Habit not found.</p>
             )}
+            <Link to={`/habits/edit/${id}`}>EDIT HABIT</Link>
+            <br />
+            <button onClick={handleDelete}>DELETE HABIT</button>
+            <br />
             <Link to="/habits">Back to Habits</Link>
         </>
     );
