@@ -4,6 +4,7 @@ import Navbar from './features/Navbar.tsx';
 import Habits from './features/habits/Habits.tsx';
 import User from './features/users/User.tsx';
 import HabitDetail from './features/habits/HabitDetail.tsx';
+import NewHabit from './features/habits/NewHabit.tsx';
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/habits' element={<Habits />} />
           <Route path='/habits/detail/:id' element={<HabitDetail />} />
+          <Route path='/habits/new' element={<NewHabit />} />
           <Route path='/user' element={<User />} />
         </Routes>
       </BrowserRouter>

@@ -17,6 +17,7 @@ const Habits: React.FC = () => {
     return (
         <>
             <h2>Habits</h2>
+            <Link to='/habits/new'>Add New habit</Link>
             {
                 habits.map(habit => {
                     return (
