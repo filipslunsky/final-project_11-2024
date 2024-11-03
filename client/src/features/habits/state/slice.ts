@@ -33,7 +33,7 @@ export const getHabits = createAsyncThunk('habits/getHabits', async () => {
     { email: 'two@gmail.com' },
     {
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2MzU5NTEsImV4cCI6MTczMDYzOTU1MX0.yakQ1u8D9Vjj1oG2Ojy7qzueG0t02MSqR-USmf3qBB8',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2Mzk5OTYsImV4cCI6MTczMDcyNjM5Nn0.vCAJHcIKvODgLBwacabHeXnVNQte8kUbhDuvzyG3gZc',
         'Content-Type': 'application/json'
       }
     }
