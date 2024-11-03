@@ -10,7 +10,7 @@ const {
 const habitsRouter = Router();
 
 habitsRouter.post('/', authenticateLoginToken, addNewHabit);
-habitsRouter.get('/',authenticateLoginToken, getAllHabitsByEmail);
+habitsRouter.post('/all',authenticateLoginToken, getAllHabitsByEmail);
 habitsRouter.put('/', authenticateLoginToken, updateHabit);
 habitsRouter.delete('/', authenticateLoginToken, deleteHabit);
 

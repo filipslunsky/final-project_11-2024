@@ -29,7 +29,15 @@ const initialState: HabitsState = {
 };
 
 export const getHabits = createAsyncThunk('habits/getHabits', async () => {
-  const response = await axios.get<HabitsApiResponse>(HABITS_URL);
+  const response = await axios.post<HabitsApiResponse>(`${HABITS_URL}/all`,
+    { email: 'two@gmail.com' },
+    {
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2MzU5NTEsImV4cCI6MTczMDYzOTU1MX0.yakQ1u8D9Vjj1oG2Ojy7qzueG0t02MSqR-USmf3qBB8',
+        'Content-Type': 'application/json'
+      }
+    }
+  );
   return response.data.habits;
 });
 
