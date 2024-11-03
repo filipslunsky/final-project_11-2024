@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+// import { useState } from "react";
 
 const Navbar: React.FC = () => {
-    const [logged, setLogged] = useState(false);
+    // const [logged, setLogged] = useState(false);
     return (
         // <>
         // {
