@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './features/Navbar.tsx';
 import Habits from './features/habits/Habits.tsx';
-import User from './features/users/User.tsx';
+import User from './features/user/User.tsx';
 import HabitDetail from './features/habits/HabitDetail.tsx';
 import NewHabit from './features/habits/NewHabit.tsx';
 import EditHabit from './features/habits/EditHabit.tsx';
