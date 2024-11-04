@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
         <>
             <div>
                 <Link to={'/habits'}>Habits</Link>
-                <Link to={'/user'}>{user.user?.firstName} {user.user?.lastName}</Link>
+                <Link to={'/user'}> {user.user?.firstName} {user.user?.lastName}</Link>
             </div>
         </>
     );

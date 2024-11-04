@@ -14,6 +14,33 @@ interface UserState {
     loggedIn: boolean;
     token: string | null;
     logMessage: string | null | undefined;
+    registerStatus: string | null | undefined;
+    editStatus: string | null | undefined;
+};
+
+interface NewUser {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+};
+
+interface EditUser {
+    firstName: string;
+    lastName: string;
+    password: string;
+};
+
+interface RegisterApiResponse {
+    success: string;
+    message: string;
+};
+
+interface EditApiResponse {
+    success: boolean;
+    message?: string;
+    firstName?: string;
+    lastName?: string;
 };
 
 const initialState: UserState = {
@@ -21,6 +48,8 @@ const initialState: UserState = {
     loggedIn: false,
     token: null,
     logMessage: null,
+    registerStatus: null,
+    editStatus: null,
 };
 
 const loadUserFromLocalStorage = (): UserState => {
@@ -33,9 +62,19 @@ const loadUserFromLocalStorage = (): UserState => {
             loggedIn: true,
             token: storedToken,
             logMessage: 'Logged in successfully',
+            registerStatus: '',
+            editStatus: ''
         };
     }
     return initialState;
+};
+
+const getHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
 };
 
 export const loginUser = createAsyncThunk(
@@ -57,10 +96,37 @@ export const loginUser = createAsyncThunk(
             }
         } catch (error: any) {
             console.error('Login failed with error:', error.response?.data?.message || error.message);
-            throw new Error(error.response?.data?.message || 'Login failed');
+            throw new Error(error.response?.data?.message || 'Login failed - check your password');
         }
     }
 );
+
+export const registerUser = createAsyncThunk('user/registerUser', async (newUser: NewUser) => {
+    const response = await axios.post<RegisterApiResponse>(`${USER_URL}/register`, newUser);
+    return response.data;
+});
+
+export const editUser = createAsyncThunk('user/editUser', async (editItem: EditUser) => {
+    const headers = getHeaders();
+    const response = await axios.put<EditApiResponse>(USER_URL, editItem, { headers });
+    
+    if (response.data.success) {
+        const { firstName, lastName } = response.data;
+        const userJSON = localStorage.getItem('user');
+        const user = userJSON ? JSON.parse(userJSON) : {};
+        
+        localStorage.setItem('user', JSON.stringify({
+            ...user,
+            firstName,
+            lastName
+        }));
+
+        return response.data;
+    } else {
+        return response.data;
+    }
+});
+
 
 const userSlice = createSlice({
     name: 'user',
@@ -74,9 +140,16 @@ const userSlice = createSlice({
             localStorage.removeItem('user');
             localStorage.removeItem('token');
         },
+        resetRegisterStatus: (state) => {
+            state.registerStatus = '';
+        },
+        resetEditStatus: (state) => {
+            state.editStatus = '';
+        },
     },
     extraReducers: (builder) => {
-        builder.addCase(loginUser.fulfilled, (state, action) => {
+        builder
+        .addCase(loginUser.fulfilled, (state, action) => {
             state.user = {
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
@@ -85,14 +158,37 @@ const userSlice = createSlice({
             state.token = action.payload.token;
             state.loggedIn = true;
             state.logMessage = action.payload.logMessage;
-        });
-        builder.addCase(loginUser.rejected, (state, action) => {
+        })
+        .addCase(loginUser.rejected, (state, action) => {
             console.error("Login failed:", action.error.message);
             state.loggedIn = false;
             state.logMessage = action.error.message;
-        });
+        })
+        .addCase(registerUser.pending, (state) => {
+            state.registerStatus = 'loading';
+        })
+        .addCase(registerUser.rejected, (state) => {
+            state.registerStatus = 'failed';
+        })
+        .addCase(registerUser.fulfilled, (state) => {
+            state.registerStatus = 'success';
+        })
+        .addCase(editUser.pending, (state) => {
+            state.editStatus = 'loading';
+        })
+        .addCase(editUser.rejected, (state) => {
+            state.editStatus = 'failed';
+        })
+        .addCase(editUser.fulfilled, (state, action) => {
+            state.editStatus = 'success';
+            state.user = {
+                firstName: action.payload.firstName || state.user?.firstName || '',
+                lastName: action.payload.lastName || state.user?.lastName || '',
+                email: state.user?.email || ''
+            };
+        })
     },
 });
 
-export const { logoutUser } = userSlice.actions;
+export const { logoutUser, resetRegisterStatus, resetEditStatus } = userSlice.actions;
 export default userSlice.reducer;
