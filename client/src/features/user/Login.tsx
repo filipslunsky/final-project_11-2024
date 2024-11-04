@@ -11,7 +11,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    // const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
+    const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
 
     const handleLogin = async () => {
         try {

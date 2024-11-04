@@ -2,11 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const HABITS_URL = 'http://127.0.0.1:3001/habits';
-const AUTHORIZATION_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR3b0BnbWFpbC5jb20iLCJpYXQiOjE3MzA2Mzk5OTYsImV4cCI6MTczMDcyNjM5Nn0.vCAJHcIKvODgLBwacabHeXnVNQte8kUbhDuvzyG3gZc';
-const headers = {
-    'Authorization': AUTHORIZATION_TOKEN,
-    'Content-Type': 'application/json'
-};
 
 interface Habit {
   habit_id: number;
@@ -76,23 +71,36 @@ const initialState: HabitsState = {
   editStatus: 'idle',
 };
 
+const getHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+};
+
 export const getHabits = createAsyncThunk('habits/getHabits', async () => {
-  const response = await axios.post<AllHabitsApiResponse>(`${HABITS_URL}/all`,
-    { email: 'two@gmail.com' }, { headers });
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const headers = getHeaders();
+    const response = await axios.post<AllHabitsApiResponse>(`${HABITS_URL}/all`,
+    { email: user.email }, { headers });
   return response.data.habits;
 });
 
 export const addHabit = createAsyncThunk('habits/addHabit', async (newHabit: NewHabit) => {
+    const headers = getHeaders();
     const response = await axios.post<AddHabitApiResponse>(`${HABITS_URL}`, newHabit, { headers });
     return response.data.habit;
 });
 
 export const deleteHabit = createAsyncThunk('habits/deleteHabit', async (deleteHabit: DeleteHabit) => {
+    const headers = getHeaders();
     const response = await axios.delete<DeleteHabitApiResponse>(`${HABITS_URL}/${deleteHabit.habitId}`, { headers });
     return response.data;
 });
 
 export const editHabit = createAsyncThunk('habits/editHabit', async (editHabit: EditHabit) => {
+    const headers = getHeaders();
     const response = await axios.put<EditApiResponse>(`${HABITS_URL}`, editHabit, { headers });
     return response.data.success;
 });
