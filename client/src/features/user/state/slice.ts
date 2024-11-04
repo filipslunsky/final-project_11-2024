@@ -127,6 +127,12 @@ export const editUser = createAsyncThunk('user/editUser', async (editItem: EditU
     }
 });
 
+export const deteleUser = createAsyncThunk('user/delete', async (deleteItem: {email: string}) => {
+    const headers = getHeaders();
+    const response = await axios.post<RegisterApiResponse>(`${USER_URL}/delete`, deleteItem, { headers });
+    return response.data;
+});
+
 
 const userSlice = createSlice({
     name: 'user',

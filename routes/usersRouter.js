@@ -12,6 +12,6 @@ const usersRouter = Router();
 usersRouter.post('/register', addNewUser);
 usersRouter.post('/login', loginUser);
 usersRouter.put('/', authenticateLoginToken, updateUser);
-usersRouter.delete('/', authenticateLoginToken, deleteUser);
+usersRouter.post('/delete', authenticateLoginToken, deleteUser);
 
 module.exports = usersRouter;
