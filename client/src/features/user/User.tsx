@@ -7,7 +7,7 @@ import { logoutUser } from "./state/slice";
 const User: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const user = useSelector((state: RootState) => state.user.user);
+    const user = useSelector((state: RootState) => state.user);
 
     const handleLogout = async() => {
         dispatch(logoutUser());
@@ -17,9 +17,9 @@ const User: React.FC = () => {
     return (
         <>
             <h2>User Info</h2>
-            <p>First Name: {user.firstName}</p>
-            <p>Last Name: {user.lastName}</p>
-            <p>Email address: {user.email}</p>
+            <p>First Name: {user.user?.firstName}</p>
+            <p>Last Name: {user.user?.lastName}</p>
+            <p>Email address: {user.user?.email}</p>
             <Link to='/user/edit'>Edit User details</Link>
             <br />
             <button onClick={handleLogout}>Logout</button>

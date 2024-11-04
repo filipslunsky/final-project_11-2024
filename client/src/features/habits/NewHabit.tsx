@@ -9,14 +9,14 @@ const NewHabit: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const status = useSelector((state: RootState) => state.habits.addStatus);
     const navigate = useNavigate();
-    const email = useSelector((state: RootState) => state.user.user.email);
+    const email = useSelector((state: RootState) => state.user.user?.email);
 
     const nameRef = useRef<HTMLInputElement>(null);
     const categoryRef = useRef<HTMLSelectElement>(null);
     const frequencyRef = useRef<HTMLSelectElement>(null);
 
     const handleSubmit = () => {
-        if (nameRef.current && categoryRef.current && frequencyRef.current) {
+        if (nameRef.current && categoryRef.current && frequencyRef.current && email) {
             const newHabit = {
                 email,
                 name: nameRef.current.value,
