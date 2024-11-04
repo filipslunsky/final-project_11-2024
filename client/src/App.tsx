@@ -1,24 +1,36 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store.ts';
+import ProtectedRoute from './features/user/ProtectedRoute.tsx';
 import Navbar from './features/Navbar.tsx';
 import Habits from './features/habits/Habits.tsx';
 import User from './features/user/User.tsx';
 import HabitDetail from './features/habits/HabitDetail.tsx';
 import NewHabit from './features/habits/NewHabit.tsx';
 import EditHabit from './features/habits/EditHabit.tsx';
+import EditUser from './features/user/EditUser.tsx';
+import Home from './features/user/Home.tsx';
+import Login from './features/user/Login.tsx';
 
 function App() {
+  const isLoggedIn = useSelector((state: RootState) => state.user.loggedIn);
   
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        {isLoggedIn && <Navbar />}
         <Routes>
-          <Route path='/habits' element={<Habits />} />
-          <Route path='/habits/detail/:id' element={<HabitDetail />} />
-          <Route path='/habits/new' element={<NewHabit />} />
-          <Route path='/habits/edit/:id' element={<EditHabit />} />
-          <Route path='/user' element={<User />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/user/login' element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/habits' element={<Habits />} />
+            <Route path='/habits/detail/:id' element={<HabitDetail />} />
+            <Route path='/habits/new' element={<NewHabit />} />
+            <Route path='/habits/edit/:id' element={<EditHabit />} />
+            <Route path='/user' element={<User />} />
+            <Route path='/user/edit' element={<EditUser />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
