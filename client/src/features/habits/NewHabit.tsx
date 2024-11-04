@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addHabit, resetAddStatus } from "./state/slice";
+import { addHabit, resetAddHabitStatus } from "./state/slice";
 import { AppDispatch, RootState } from "../../app/store.ts";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const NewHabit: React.FC = () => {
     useEffect(() => {
         if (status === 'success') {
             navigate('/habits');
-            dispatch(resetAddStatus());
+            dispatch(resetAddHabitStatus());
         }
     }, [status, navigate]);
 

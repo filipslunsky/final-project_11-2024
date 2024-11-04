@@ -74,7 +74,7 @@ const _updateHabit = async (habitId, name, category, frequency) => {
             if (!habitExists) {
                 return { success: false, message: 'Habit does not exist' };
             }
-            const habit = await trx('habits').update({name, category, frequency}).where({ habit_id: habitId });
+            const habit = await trx('habits').update({name, category, frequency}).where({ habit_id: habitId }).orderBy('habit_id');
             return { success: true, habitId, name, category, frequency};
         });
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editHabit, resetEditStatus } from "./state/slice";
+import { editHabit, resetEditHabitStatus } from "./state/slice";
 import { AppDispatch, RootState } from "../../app/store.ts";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -28,7 +28,6 @@ const EditHabit: React.FC = () => {
                 frequency: frequencyRef.current.value,
             };
             dispatch(editHabit(editItem));
-            // console.log(status);
         }
     };
 
@@ -39,7 +38,7 @@ const EditHabit: React.FC = () => {
     useEffect(() => {
         if (status === 'success') {
             navigate('/habits');
-            dispatch(resetEditStatus());
+            dispatch(resetEditHabitStatus());
         }
     }, [status, navigate]);
 

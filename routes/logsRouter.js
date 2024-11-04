@@ -10,6 +10,6 @@ const logsRouter = Router();
 
 logsRouter.post('/new', authenticateLoginToken, addNewLog);
 logsRouter.post('/', authenticateLoginToken, getAllLogsByHabitId);
-logsRouter.delete('/', authenticateLoginToken, deleteLog);
+logsRouter.post('/delete', authenticateLoginToken, deleteLog);
 
 module.exports = logsRouter;

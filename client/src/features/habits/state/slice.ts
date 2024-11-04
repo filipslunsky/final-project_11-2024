@@ -101,13 +101,13 @@ const habitsSlice = createSlice({
   name: 'habits',
   initialState,
   reducers: {
-    resetAddStatus: (state) => {
+    resetAddHabitStatus: (state) => {
         state.addStatus = 'idle';
       },
-      resetDeleteStatus: (state) => {
+      resetDeleteHabitStatus: (state) => {
         state.deleteStatus = 'idle';
       },
-      resetEditStatus: (state) => {
+      resetEditHabitStatus: (state) => {
         state.editStatus = 'idle';
       }
   },
@@ -153,5 +153,5 @@ const habitsSlice = createSlice({
   },
 });
 
-export const { resetAddStatus, resetDeleteStatus, resetEditStatus } = habitsSlice.actions;
+export const { resetAddHabitStatus, resetDeleteHabitStatus, resetEditHabitStatus } = habitsSlice.actions;
 export default habitsSlice.reducer;

@@ -37,11 +37,10 @@ const _getAllLogsByHabitId = async (habitId) => {
                 .where({ habit_id: habitId })
                 .first();
             if (!habitExists) {
-                return { success: false, message: 'Logs not found' };
+                return { success: true, message: 'No logs found', habitLogs: [] };
             }
-
             const habitLogs = await trx('habit_logs').select('log_id', 'habit_id', 'date').where({habit_id: habitId}).orderBy('date');
-            return { success: true, habitLogs };
+            return { success: true, message: 'Logs found', habitLogs };
         });
     } catch (error) {
         console.error('Transaction error:', error);
@@ -62,7 +61,7 @@ const _deleteLog = async (habitId, date) => {
             await trx('habit_logs').where({log_id: logId.log_id}).delete();
 
             unContinueStreak(habitId);
-            
+
             return { success: true, message: `Log successfully deleted for ${date}` };
         });
     } catch (error) {
