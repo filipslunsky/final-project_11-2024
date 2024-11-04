@@ -76,9 +76,9 @@ const HabitDetail: React.FC = () => {
                     {
                         !habit.completed
                         ?
-                        <button onClick={() => handleCompleteHabit(Number(id))}>MARK AS COMPLETED</button>
+                        <button onClick={() => handleCompleteHabit(Number(id))}>MARK AS DONE</button>
                         :
-                        <button onClick={() => handleUncompleteHabit(Number(id))}>MARK AS INCOMPLETE</button>
+                        <button onClick={() => handleUncompleteHabit(Number(id))}>UNDO</button>
                     }
                     <History habitId={habit.habit_id} />
                 </div>
