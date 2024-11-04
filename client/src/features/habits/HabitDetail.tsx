@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store.ts";
-import { useEffect } from "react";
 import { getHabits, deleteHabit, resetDeleteHabitStatus } from './state/slice.ts';
 import History from "../logs/History.tsx";
 import { addLog, deleteLog } from "../logs/state/slice.ts";
@@ -15,6 +14,8 @@ const HabitDetail: React.FC = () => {
     const navigate = useNavigate();
     const addLogStatus = useSelector((state: RootState) => state.logs.addLogStatus);
     const deleteLogStatus = useSelector((state: RootState) => state.logs.deleteLogStatus);
+
+    const [delClicked, setDelClicked] = useState<boolean>(false);
 
     useEffect(() => {
         dispatch(getHabits());
@@ -54,6 +55,14 @@ const HabitDetail: React.FC = () => {
         }
     }, [status, navigate, dispatch]);
 
+    const handleDecision = () => {
+        setDelClicked(true);
+    };
+
+    const handleAbort = () => {
+        setDelClicked(false);
+    }
+
     return (
         <>
             {habit ? (
@@ -78,7 +87,18 @@ const HabitDetail: React.FC = () => {
             )}
             <Link to={`/habits/edit/${id}`}>EDIT HABIT</Link>
             <br />
-            <button onClick={handleDelete}>DELETE HABIT</button>
+            {
+                delClicked
+                ?
+                <div>
+                    <h3>Are you sure you want to give up - {habit?.name}?</h3>
+                    <button onClick={handleDelete}>Yes, I give up</button>
+                    <br />
+                    <button onClick={handleAbort}>No, I will keep trying</button>
+                </div>
+                :
+                <button onClick={handleDecision}>DELETE HABIT</button>
+            }
             <br />
             <Link to="/habits">Back to Habits</Link>
         </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
@@ -8,6 +8,9 @@ const User: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const user = useSelector((state: RootState) => state.user);
+    
+    const [delClicked, setDelClicked] = useState<boolean>(false);
+
     const email = user.user?.email;
 
     const handleLogout = async() => {
@@ -25,6 +28,14 @@ const User: React.FC = () => {
         return;
     };
 
+    const handleDecision = () => {
+        setDelClicked(true);
+    };
+
+    const handleAbort = () => {
+        setDelClicked(false);
+    }
+
     return (
         <>
             <h2>User Info</h2>
@@ -35,7 +46,19 @@ const User: React.FC = () => {
             <br />
             <button onClick={handleLogout}>Logout</button>
             <br />
-            <button onClick={handleDelete}>DELETE ACCOUNT</button>
+            {
+                delClicked
+                ?
+                <div>
+                    <h3>Are you sure you want to delete your account?</h3>
+                    <button onClick={handleDelete}>Yes, I am sure</button>
+                    <br />
+                    <button onClick={handleAbort}>NO</button>
+                </div>
+                :
+                <button onClick={handleDecision}>DELETE ACCOUNT</button>
+            }
+            
         </>
     );
 }
