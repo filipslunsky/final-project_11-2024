@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require("path");
 
 const usersRouter = require('./routes/usersRouter.js');
 const habitsRouter = require('./routes/habitsRouter.js');
@@ -21,3 +22,8 @@ app.use(express.json());
 app.use('/user', usersRouter);
 app.use('/habits', habitsRouter);
 app.use('/logs', logsRouter);
+
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});

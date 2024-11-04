@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store.ts';
 import ProtectedRoute from './features/user/ProtectedRoute.tsx';
@@ -33,6 +33,7 @@ function App() {
             <Route path='/user' element={<User />} />
             <Route path='/user/edit' element={<EditUser />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </>
