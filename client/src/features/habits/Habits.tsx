@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from "../../app/store.ts";
 import Habit from "./Habit.tsx";
 import { getHabits } from './state/slice.ts';
 import { Link } from "react-router-dom";
-import { addLog, deleteLog } from "../logs/state/slice.ts";
+import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
 
 const Habits: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();

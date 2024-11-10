@@ -3,8 +3,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store.ts";
 import { getHabits, deleteHabit, resetDeleteHabitStatus } from './state/slice.ts';
-import History from "../logs/History.tsx";
-import { addLog, deleteLog } from "../logs/state/slice.ts";
+import History from "../habitLogs/History.tsx";
+import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
 
 const HabitDetail: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
