@@ -3,3 +3,56 @@
     flex-direction: column;
     align-items: center;
 }
+
+.habit-name {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.category, .frequency {
+    font-size: 22px;
+    font-style: italic;
+}
+
+.current, .max, .completed {
+    font-size: 20px;
+}
+
+.edit, .delete, .done-button, .undone-button, .yes, .no {
+    margin: 8px;
+    font-size: 15px;
+    border: none;
+}
+
+.question {
+    color: red;
+}
+
+.delete, .yes, .undone-button {
+    background-color: red;
+    color: white;
+}
+
+.no, .done-button {
+    color: white;
+    background-color: green;
+}
+
+.edit {
+    border-radius: 10px;
+    background-color: rgb(124, 199, 246);
+    margin: 10px;
+    color: white;
+    background-color: rgb(124, 199, 246);
+    width: 140px;
+    height: 25px;
+}
+
+.edit:hover, .delete:hover, .yes:hover, .no:hover, .done-button:hover, .undone-button:hover {
+    border: solid 2px black;
+    color: white;
+}
+
+.back {
+    margin: 15px;
+}
