@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
 import { logoutUser, deteleUser } from "./state/slice";
+import './user.css';
 
 const User: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -39,24 +40,23 @@ const User: React.FC = () => {
     return (
         <>
             <h2>User Info</h2>
-            <p>First Name: {user.user?.firstName}</p>
-            <p>Last Name: {user.user?.lastName}</p>
-            <p>Email address: {user.user?.email}</p>
-            <Link to='/user/edit'>Edit User details</Link>
-            <br />
-            <button onClick={handleLogout}>Logout</button>
-            <br />
+            <div className="user-container">
+                <p className="username">First Name: {user.user?.firstName}</p>
+                <p className="username">Last Name: {user.user?.lastName}</p>
+                <p className="email">Email address: {user.user?.email}</p>
+                <Link className="edit" to='/user/edit'>Edit User Details</Link>
+                <button className="logout" onClick={handleLogout}>Logout</button>
+            </div>
             {
                 delClicked
                 ?
-                <div>
-                    <h3>Are you sure you want to delete your account?</h3>
-                    <button onClick={handleDelete}>Yes, I am sure</button>
-                    <br />
-                    <button onClick={handleAbort}>NO</button>
+                <div className="decision-container">
+                    <h3 className="question">Are you sure you want to delete your account?</h3>
+                    <button className="yes" onClick={handleDelete}>Yes, I am sure</button>
+                    <button className="no" onClick={handleAbort}>NO</button>
                 </div>
                 :
-                <button onClick={handleDecision}>DELETE ACCOUNT</button>
+                <button className="delete" onClick={handleDecision}>DELETE ACCOUNT</button>
             }
             
         </>

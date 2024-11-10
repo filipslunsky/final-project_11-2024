@@ -5,6 +5,7 @@ import { RootState, AppDispatch } from "../../app/store.ts";
 import { getHabits, deleteHabit, resetDeleteHabitStatus } from './state/slice.ts';
 import History from "../habitLogs/History.tsx";
 import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
+import './habitDetail.css';
 
 const HabitDetail: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -65,42 +66,41 @@ const HabitDetail: React.FC = () => {
 
     return (
         <>
-            {habit ? (
-                <div>
-                    <h2>{habit.name}</h2>
-                    <p>Category: {habit.category}</p>
-                    <p>Frequency: {habit.frequency}</p>
-                    <p>Current Streak: {habit.current_streak}</p>
-                    <p>Max Streak: {habit.max_streak}</p>
-                    <p>Completed: {habit.completed ? "Yes" : "No"}</p>
-                    {
-                        !habit.completed
-                        ?
-                        <button onClick={() => handleCompleteHabit(Number(id))}>MARK AS DONE</button>
-                        :
-                        <button onClick={() => handleUncompleteHabit(Number(id))}>UNDO</button>
-                    }
-                    <History habitId={habit.habit_id} />
-                </div>
-            ) : (
-                <p>Habit not found.</p>
-            )}
-            <Link to={`/habits/edit/${id}`}>EDIT HABIT</Link>
-            <br />
-            {
-                delClicked
-                ?
-                <div>
-                    <h3>Are you sure you want to give up - {habit?.name}?</h3>
-                    <button onClick={handleDelete}>Yes, I give up</button>
-                    <br />
-                    <button onClick={handleAbort}>No, I will keep trying</button>
-                </div>
-                :
-                <button onClick={handleDecision}>DELETE HABIT</button>
-            }
-            <br />
-            <Link to="/habits">Back to Habits</Link>
+            <div className="main-container">
+                {habit ? (
+                    <div>
+                        <h2>{habit.name}</h2>
+                        <p>Category: {habit.category}</p>
+                        <p>Frequency: {habit.frequency}</p>
+                        <p>Current Streak: {habit.current_streak}</p>
+                        <p>Max Streak: {habit.max_streak}</p>
+                        <p>Completed: {habit.completed ? "Yes" : "No"}</p>
+                        {
+                            !habit.completed
+                            ?
+                            <button onClick={() => handleCompleteHabit(Number(id))}>MARK AS DONE</button>
+                            :
+                            <button onClick={() => handleUncompleteHabit(Number(id))}>UNDO</button>
+                        }
+                        <History habitId={habit.habit_id} />
+                    </div>
+                ) : (
+                    <p>Habit not found.</p>
+                )}
+                <Link to={`/habits/edit/${id}`}>EDIT HABIT</Link>
+                {
+                    delClicked
+                    ?
+                    <div>
+                        <h3>Are you sure you want to give up - {habit?.name}?</h3>
+                        <button onClick={handleDelete}>Yes, I give up</button>
+                        <button onClick={handleAbort}>No, I will keep trying</button>
+                    </div>
+                    :
+                    <button onClick={handleDecision}>DELETE HABIT</button>
+                }
+                <Link to="/habits">Back to Habits</Link>
+            </div>
         </>
     );
 }
