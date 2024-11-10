@@ -80,8 +80,9 @@ const Habits: React.FC = () => {
                     ?
                     filteredHabits.map(habit => {
                         return (
-                            <div className="habit-container" key={habit.habit_id}>
+                            <div className={habit.category} key={habit.habit_id}>
                                     <div
+                                    className={habit.completed ? 'done' : 'undone'}
                                     onClick={() => {
                                         !habit.completed
                                         ?
@@ -97,8 +98,8 @@ const Habits: React.FC = () => {
                                         currentStreak={habit.current_streak}
                                         completed={habit.completed} 
                                         />
-                                    </div>
-                                    <Link className="more-info" to={`/habits/detail/${habit.habit_id}`}>more info</Link>
+                                        <Link className="more-info" to={`/habits/detail/${habit.habit_id}`}>more info</Link>
+                                    </div> 
                             </div>
                         )
                     })
