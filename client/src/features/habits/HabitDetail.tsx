@@ -78,28 +78,28 @@ const HabitDetail: React.FC = () => {
                         {
                             !habit.completed
                             ?
-                            <button className="done-button" onClick={() => handleCompleteHabit(Number(id))}>MARK AS DONE</button>
+                            <button className="done-button" onClick={() => handleCompleteHabit(Number(id))}>mark as done</button>
                             :
-                            <button className="undone-button" onClick={() => handleUncompleteHabit(Number(id))}>UNDO</button>
+                            <button className="undone-button" onClick={() => handleUncompleteHabit(Number(id))}>undo</button>
                         }
                         <History habitId={habit.habit_id} />
                     </div>
                 ) : (
                     <p>Habit not found.</p>
                 )}
-                <Link className="edit" to={`/habits/edit/${id}`}>EDIT HABIT</Link>
+                <Link className="edit" to={`/habits/edit/${id}`}>edit habit</Link>
                 {
                     delClicked
                     ?
                     <div>
                         <h3>Are you sure you want to give up - {habit?.name}?</h3>
-                        <button className="yes" onClick={handleDelete}>Yes, I give up</button>
-                        <button className="no" onClick={handleAbort}>No, I will keep trying</button>
+                        <button className="yes" onClick={handleDelete}>Yes, I give up...</button>
+                        <button className="no" onClick={handleAbort}>No, I will keep trying!</button>
                     </div>
                     :
-                    <button className="delete" onClick={handleDecision}>DELETE HABIT</button>
+                    <button className="delete" onClick={handleDecision}>delete habit</button>
                 }
-                <Link className="back" to="/habits">Back to Habits</Link>
+                <Link className="back" to="/habits">back to habits</Link>
             </div>
         </>
     );

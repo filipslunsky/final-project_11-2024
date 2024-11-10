@@ -72,8 +72,8 @@ const EditHabit: React.FC = () => {
                 <option value="make good habit">make good habit</option>
                 <option value="break bad habit">break bad habit</option>
             </select>
-            <button className="form-button" onClick={handleSave}>SAVE</button>
-            <button className="form-button" onClick={handleCancel}>CANCEL</button>
+            <button className="form-button" onClick={handleSave}>save</button>
+            <button className="form-button" onClick={handleCancel}>cancel</button>
         </div>
         </>
     );

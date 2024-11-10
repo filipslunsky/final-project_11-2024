@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addHabit, resetAddHabitStatus } from "./state/slice";
 import { AppDispatch, RootState } from "../../app/store.ts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import '../forms.css';
 
 const NewHabit: React.FC = () => {
@@ -55,7 +55,8 @@ const NewHabit: React.FC = () => {
                     <option value="make good habit">make good habit</option>
                     <option value="break bad habit">break bad habit</option>
                 </select>
-                <button className="form-button" onClick={handleSubmit}>ADD</button>
+                <button className="form-button" onClick={handleSubmit}>add</button>
+                <Link className="form-link" to="/habits">cancel</Link>
             </div>
         </>
     );

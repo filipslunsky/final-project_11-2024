@@ -55,7 +55,7 @@ const EditUser: React.FC = () => {
             ?
             <div className="form-container">
                 <h2>Your user information was successfully updated.</h2>
-                <Link className="form-link" to='/user'>Go back</Link>
+                <Link className="form-link" to='/user'>go back</Link>
             </div>
             :
             <div className="form-container">
@@ -66,7 +66,7 @@ const EditUser: React.FC = () => {
                 <input className="form-input" onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose new password" />
                 <input className="form-input" onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat new password" />
                 <p>{passwordMessage}</p>
-                <button className="form-button" onClick={handleClick}>SAVE</button>
+                <button className="form-button" onClick={handleClick}>save</button>
                 <Link className="form-link" to='/user'>cancel</Link>
             </div>
         }

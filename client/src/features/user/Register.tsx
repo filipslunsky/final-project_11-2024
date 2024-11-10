@@ -65,7 +65,7 @@ const Register: React.FC = () => {
                     <input className="form-input" onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose your password" required />
                     <input className="form-input" onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat your password" required />
                     <p>{passwordMessage}</p>
-                    <button className="form-button" onClick={handleClick}>REGISTER</button>
+                    <button className="form-button" onClick={handleClick}>register</button>
                     <Link className="form-link" to='/'>cancel</Link>
                 </div>
             }

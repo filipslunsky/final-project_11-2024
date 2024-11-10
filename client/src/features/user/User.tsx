@@ -44,8 +44,8 @@ const User: React.FC = () => {
                 <p className="username">First Name: {user.user?.firstName}</p>
                 <p className="username">Last Name: {user.user?.lastName}</p>
                 <p className="email">Email address: {user.user?.email}</p>
-                <Link className="edit" to='/user/edit'>Edit User Details</Link>
-                <button className="logout" onClick={handleLogout}>Logout</button>
+                <Link className="edit" to='/user/edit'>edit user details</Link>
+                <button className="logout" onClick={handleLogout}>logout</button>
             </div>
             {
                 delClicked
@@ -53,10 +53,10 @@ const User: React.FC = () => {
                 <div className="decision-container">
                     <h3 className="question">Are you sure you want to delete your account?</h3>
                     <button className="yes" onClick={handleDelete}>Yes, I am sure</button>
-                    <button className="no" onClick={handleAbort}>NO</button>
+                    <button className="no" onClick={handleAbort}>No, I take it back</button>
                 </div>
                 :
-                <button className="delete" onClick={handleDecision}>DELETE ACCOUNT</button>
+                <button className="delete" onClick={handleDecision}>delete account</button>
             }
             
         </>

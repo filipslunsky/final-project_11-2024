@@ -73,7 +73,7 @@ const Habits: React.FC = () => {
                     <option value="false">incomplete</option>
                 </select>
             </div>
-            <Link className="add-habit" to='/habits/new'>+ Add New Habit</Link>
+            <Link className="add-habit" to='/habits/new'>+ add new habit</Link>
             <div className="habits-container">
                 {
                     filteredHabits.length > 0
