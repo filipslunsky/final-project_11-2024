@@ -18,6 +18,9 @@ const NewHabit: React.FC = () => {
 
     const handleSubmit = () => {
         if (nameRef.current && categoryRef.current && frequencyRef.current && email) {
+            if (nameRef.current.value === '') {
+                return;
+            };
             const newHabit = {
                 email,
                 name: nameRef.current.value,

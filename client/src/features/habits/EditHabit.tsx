@@ -22,6 +22,9 @@ const EditHabit: React.FC = () => {
 
     const handleSave = () => {
         if (nameRef.current && categoryRef.current && frequencyRef.current) {
+            if (nameRef.current.value === '') {
+                return;
+            };
             const editItem = {
                 habitId: Number(id),
                 name: nameRef.current.value,

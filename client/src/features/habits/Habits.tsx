@@ -76,7 +76,8 @@ const Habits: React.FC = () => {
                 filteredHabits.map(habit => {
                     return (
                         <div key={habit.habit_id}>
-                                <div onClick={() => {
+                                <div
+                                onClick={() => {
                                     !habit.completed
                                     ?
                                     handleCompleteHabit(habit.habit_id)
