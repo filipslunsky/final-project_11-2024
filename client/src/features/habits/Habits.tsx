@@ -5,6 +5,7 @@ import Habit from "./Habit.tsx";
 import { getHabits } from './state/slice.ts';
 import { Link } from "react-router-dom";
 import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
+import './habits.css';
 
 const Habits: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -52,55 +53,59 @@ const Habits: React.FC = () => {
     return (
         <>
             <h2>Habits</h2>
-            <input onChange={(e) => setSearchText(e.target.value)} type="text" placeholder="search by name"/>
-            <select name="category" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-                <option value="all">all categories</option>
-                <option value="food">food</option>
-                <option value="fitness">fitness</option>
-                <option value="make good habit">make good habit</option>
-                <option value="break bad habit">break bad habit</option>
-            </select>
-            <select name="frequency" value={selectedFrequency} onChange={(e) => setSelectedFrequency(e.target.value)}>
-                <option value="all">any frequency</option>
-                <option value="daily">daily</option>
-                <option value="weekly">weekly</option>
-            </select>
-            <select name="completed" value={selectedCompletion} onChange={(e) => setSelectedCompletion(e.target.value)}>
-                <option value="all">both complete and incomplete</option>
-                <option value="true">complete</option>
-                <option value="false">incomplete</option>
-            </select>
-            {
-                filteredHabits.length > 0
-                ?
-                filteredHabits.map(habit => {
-                    return (
-                        <div key={habit.habit_id}>
-                                <div
-                                onClick={() => {
-                                    !habit.completed
-                                    ?
-                                    handleCompleteHabit(habit.habit_id)
-                                    :
-                                    handleUncompleteHabit(habit.habit_id)
-                                }}>
-                                    <Habit
-                                    habitId={habit.habit_id}
-                                    name={habit.name}
-                                    category={habit.category}
-                                    frequency={habit.frequency}
-                                    currentStreak={habit.current_streak}
-                                    completed={habit.completed} 
-                                    />
-                                </div>
-                                <Link to={`/habits/detail/${habit.habit_id}`}>more info</Link>
-                        </div>
-                    )
-                })
-                :
-                <p>No habits found</p>
-            }
-            <Link to='/habits/new'>Add New habit</Link>
+            <div className="select-container">
+                <input className="habit-selector-input" onChange={(e) => setSearchText(e.target.value)} type="text" placeholder="search by name"/>
+                <select className="habit-selector" name="category" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+                    <option value="all">all categories</option>
+                    <option value="food">food</option>
+                    <option value="fitness">fitness</option>
+                    <option value="make good habit">make good habit</option>
+                    <option value="break bad habit">break bad habit</option>
+                </select>
+                <select className="habit-selector" name="frequency" value={selectedFrequency} onChange={(e) => setSelectedFrequency(e.target.value)}>
+                    <option value="all">any frequency</option>
+                    <option value="daily">daily</option>
+                    <option value="weekly">weekly</option>
+                </select>
+                <select className="habit-selector" name="completed" value={selectedCompletion} onChange={(e) => setSelectedCompletion(e.target.value)}>
+                    <option value="all">both complete and incomplete</option>
+                    <option value="true">complete</option>
+                    <option value="false">incomplete</option>
+                </select>
+            </div>
+            <Link className="add-habit" to='/habits/new'>+ Add New Habit</Link>
+            <div className="habits-container">
+                {
+                    filteredHabits.length > 0
+                    ?
+                    filteredHabits.map(habit => {
+                        return (
+                            <div className="habit-container" key={habit.habit_id}>
+                                    <div
+                                    onClick={() => {
+                                        !habit.completed
+                                        ?
+                                        handleCompleteHabit(habit.habit_id)
+                                        :
+                                        handleUncompleteHabit(habit.habit_id)
+                                    }}>
+                                        <Habit
+                                        habitId={habit.habit_id}
+                                        name={habit.name}
+                                        category={habit.category}
+                                        frequency={habit.frequency}
+                                        currentStreak={habit.current_streak}
+                                        completed={habit.completed} 
+                                        />
+                                    </div>
+                                    <Link className="more-info" to={`/habits/detail/${habit.habit_id}`}>more info</Link>
+                            </div>
+                        )
+                    })
+                    :
+                        <p className="not-found">No habits found</p>
+                }
+            </div>
         </>
     );
 }
