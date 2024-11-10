@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
 import { loginUser } from "./state/slice";
+import '../forms.css';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -39,17 +40,17 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <h2>Log in to your account</h2>
-            <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" value={email} />
-            <br />
-            <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" value={password} />
-            <br />
-            <button onClick={handleLogin}>Login</button>
+            <div className="form-container">
+                <h2>Log in to your account</h2>
+                <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" value={email} />
+                <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" value={password} />
+                <button className="form-button" onClick={handleLogin}>Login</button>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            <h4>You don't have an account yet?</h4>
-            <Link to='/user/register'>CREATE ACCOUNT</Link>
+                <h4>You don't have an account yet?</h4>
+                <Link className="form-link" to='/user/register'>CREATE ACCOUNT</Link>
+            </div>
         </>
     );
 };

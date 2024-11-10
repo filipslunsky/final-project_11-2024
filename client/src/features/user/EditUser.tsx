@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { editUser, resetEditStatus } from "./state/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
+import '../forms.css';
 
 const EditUser: React.FC = () => {
     const [firstName, setFirstName] = useState<string>('');
@@ -52,26 +53,21 @@ const EditUser: React.FC = () => {
         {
             success
             ?
-            <div>
+            <div className="form-container">
                 <h2>Your user information was successfully updated.</h2>
-                <Link to='/user'>Go back</Link>
+                <Link className="form-link" to='/user'>Go back</Link>
             </div>
             :
-            <div>
+            <div className="form-container">
                 <h2>Update User Information</h2>
                 <h4>{user?.firstName} {user?.lastName}</h4>
-                <input onChange={(e) => {setFirstName(e.target.value)}} type="text" placeholder="first name" />
-                <br />
-                <input onChange={(e) => {setLastName(e.target.value)}} type="text" placeholder="last name" />
-                <br />
-                <input onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose new password" />
-                <br />
-                <input onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat new password" />
-                <br />
+                <input className="form-input" onChange={(e) => {setFirstName(e.target.value)}} type="text" placeholder="first name" />
+                <input className="form-input" onChange={(e) => {setLastName(e.target.value)}} type="text" placeholder="last name" />
+                <input className="form-input" onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose new password" />
+                <input className="form-input" onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat new password" />
                 <p>{passwordMessage}</p>
-                <button onClick={handleClick}>SAVE</button>
-                <br />
-                <Link to='/user'>cancel</Link>
+                <button className="form-button" onClick={handleClick}>SAVE</button>
+                <Link className="form-link" to='/user'>cancel</Link>
             </div>
         }
         </>

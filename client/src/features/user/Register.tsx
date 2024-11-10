@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { registerUser, resetRegisterStatus } from "./state/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
+import '../forms.css';
 
 const Register: React.FC = () => {
     const [firstName, setFirstName] = useState<string>('');
@@ -56,22 +57,16 @@ const Register: React.FC = () => {
                     <Link to='/user/login'>LOGIN</Link>
                 </div>
                 :
-                <div>
+                <div className="form-container">
                     <h2>Register</h2>
-                    <input onChange={(e) => {setFirstName(e.target.value)}} type="text" placeholder="first name" required />
-                    <br />
-                    <input onChange={(e) => {setLastName(e.target.value)}} type="text" placeholder="last name" required />
-                    <br />
-                    <input onChange={(e) => {setEmail(e.target.value)}} type="email" placeholder="email address" required />
-                    <br />
-                    <input onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose your password" required />
-                    <br />
-                    <input onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat your password" required />
-                    <br />
+                    <input className="form-input" onChange={(e) => {setFirstName(e.target.value)}} type="text" placeholder="first name" required />
+                    <input className="form-input" onChange={(e) => {setLastName(e.target.value)}} type="text" placeholder="last name" required />
+                    <input className="form-input" onChange={(e) => {setEmail(e.target.value)}} type="email" placeholder="email address" required />
+                    <input className="form-input" onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="choose your password" required />
+                    <input className="form-input" onChange={(e) => {setPasswordCheck(e.target.value)}} type="password" placeholder="repeat your password" required />
                     <p>{passwordMessage}</p>
-                    <button onClick={handleClick}>REGISTER</button>
-                    <br />
-                    <Link to='/'>cancel</Link>
+                    <button className="form-button" onClick={handleClick}>REGISTER</button>
+                    <Link className="form-link" to='/'>cancel</Link>
                 </div>
             }
         </>

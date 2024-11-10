@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editHabit, resetEditHabitStatus } from "./state/slice";
 import { AppDispatch, RootState } from "../../app/store.ts";
 import { useNavigate, useParams } from "react-router-dom";
+import '../forms.css';
 
 const EditHabit: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -52,26 +53,25 @@ const EditHabit: React.FC = () => {
 
     return (
         <>
-        <h2>Edit</h2>
-        <h2>"{habit.name}"</h2>
-        <input ref={nameRef} type="text" name="name" placeholder="new task name" />
-        <br />
-        <select ref={frequencyRef} name="frequency">
-            <option value="" disabled>select new frequency</option>
-            <option value="daily">daily</option>
-            <option value="weekly">weekly</option>
-        </select>
-        <br />
-        <select ref={categoryRef} name="category">
-            <option value="" disabled>select new category</option>
-            <option value="food">food</option>
-            <option value="fitness">fitness</option>
-            <option value="make good habit">make good habit</option>
-            <option value="break bad habit">break bad habit</option>
-        </select>
-        <br />
-        <button onClick={handleSave}>SAVE</button>
-        <button onClick={handleCancel}>CANCEL</button>
+        <div className="form-container">
+            <h2>Edit</h2>
+            <h2>"{habit.name}"</h2>
+            <input className="form-input" ref={nameRef} type="text" name="name" placeholder="new task name" />
+            <select className="form-input" ref={frequencyRef} name="frequency">
+                <option value="" disabled>select new frequency</option>
+                <option value="daily">daily</option>
+                <option value="weekly">weekly</option>
+            </select>
+            <select className="form-input" ref={categoryRef} name="category">
+                <option value="" disabled>select new category</option>
+                <option value="food">food</option>
+                <option value="fitness">fitness</option>
+                <option value="make good habit">make good habit</option>
+                <option value="break bad habit">break bad habit</option>
+            </select>
+            <button className="form-button" onClick={handleSave}>SAVE</button>
+            <button className="form-button" onClick={handleCancel}>CANCEL</button>
+        </div>
         </>
     );
 }

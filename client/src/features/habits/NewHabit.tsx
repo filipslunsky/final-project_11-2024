@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addHabit, resetAddHabitStatus } from "./state/slice";
 import { AppDispatch, RootState } from "../../app/store.ts";
 import { useNavigate } from "react-router-dom";
+import '../forms.css';
 
 const NewHabit: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -36,24 +37,23 @@ const NewHabit: React.FC = () => {
 
     return (
         <>
-        <h2>Add New Habit</h2>
-        <input ref={nameRef} type="text" name="name" placeholder="task name" />
-        <br />
-        <select ref={frequencyRef} name="frequency">
-            <option value="" disabled>select frequency</option>
-            <option value="daily">daily</option>
-            <option value="weekly">weekly</option>
-        </select>
-        <br />
-        <select ref={categoryRef} name="category">
-            <option value="" disabled>select category</option>
-            <option value="food">food</option>
-            <option value="fitness">fitness</option>
-            <option value="make good habit">make good habit</option>
-            <option value="break bad habit">break bad habit</option>
-        </select>
-        <br />
-        <button onClick={handleSubmit}>ADD</button>
+            <div className="form-container">
+                <h2>Add New Habit</h2>
+                <input className="form-input" ref={nameRef} type="text" name="name" placeholder="task name" />
+                <select className="form-input" ref={frequencyRef} name="frequency">
+                    <option value="" disabled>select frequency</option>
+                    <option value="daily">daily</option>
+                    <option value="weekly">weekly</option>
+                </select>
+                <select className="form-input" ref={categoryRef} name="category">
+                    <option value="" disabled>select category</option>
+                    <option value="food">food</option>
+                    <option value="fitness">fitness</option>
+                    <option value="make good habit">make good habit</option>
+                    <option value="break bad habit">break bad habit</option>
+                </select>
+                <button className="form-button" onClick={handleSubmit}>ADD</button>
+            </div>
         </>
     );
 }
