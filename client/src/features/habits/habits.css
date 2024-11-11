@@ -42,22 +42,22 @@
 }
 
 .food {
-    border: 4px solid orange;
+    border: 1px solid orange;
     box-shadow: 0 15px 15px rgba(255, 165, 0, 0.2);
 }
 
 .fitness {
-    border: 4px solid blue;
+    border: 1px solid blue;
     box-shadow: 0 15px 15px rgba(0, 0, 255, 0.2);
 }
 
 .make.good.habit {
-    border: 4px solid green;
+    border: 1px solid green;
     box-shadow: 0 15px 15px rgba(0, 128, 0, 0.2);
 }
 
 .break.bad.habit {
-    border: 4px solid red;
+    border: 1px solid red;
     box-shadow: 0 15px 15px rgba(255, 0, 0, 0.2);
 }
 
