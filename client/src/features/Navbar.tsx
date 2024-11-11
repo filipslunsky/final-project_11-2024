@@ -8,10 +8,10 @@ const Navbar: React.FC = () => {
     const user = useSelector((state: RootState) => state.user);
     return (
         <>
-            <div className="nav-container">
-                <Link to={'/habits'} className="nav-item">Habits</Link>
-                <Link to={'/user'} className="nav-item">{user.user?.firstName} {user.user?.lastName}</Link>
-            </div>
+                <div className="nav-container">
+                    <Link to={'/habits'} className="nav-item">Habits</Link>
+                    <Link to={'/user'} className="nav-item">{user.user?.firstName} {user.user?.lastName}</Link>
+                </div>
         </>
     );
 }

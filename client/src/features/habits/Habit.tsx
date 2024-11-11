@@ -12,7 +12,7 @@ interface HabitProps {
 const Habit: React.FC<HabitProps> = (props) => {
     return (
     <>
-        <h2>{props.name}</h2>
+        <h3>{props.name}</h3>
         <p>Category: {props.category}</p>
         <p>Frequency: {props.frequency}</p>
         <p>Current Streak: {props.currentStreak}</p>

@@ -14,7 +14,7 @@
     font-style: italic;
 }
 
-.edit, .delete, .logout, .yes, .no {
+.edit, .delete, .yes, .no {
     margin: 10px;
     font-size: 20px;
 }
@@ -35,7 +35,8 @@
 
 .logout {
     color: white;
-    background-color: yellow;
+    background-color: orange;
+    font-size: 15px;
 }
 
 .edit {

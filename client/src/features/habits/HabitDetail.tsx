@@ -83,8 +83,8 @@ const HabitDetail: React.FC = () => {
                             :
                             <button className="undone-button" onClick={() => handleUncompleteHabit(Number(id))}>undo</button>
                         }
-                        <History habitId={habit.habit_id} />
                         <Calendar habitId={habit.habit_id} />
+                        <History habitId={habit.habit_id} />
                     </div>
                 ) : (
                     <p>Habit not found.</p>

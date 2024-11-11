@@ -98,8 +98,8 @@ const Habits: React.FC = () => {
                                         currentStreak={habit.current_streak}
                                         completed={habit.completed} 
                                         />
-                                        <Link className="more-info" to={`/habits/detail/${habit.habit_id}`}>more info</Link>
                                     </div> 
+                                    <Link className="more-info" to={`/habits/detail/${habit.habit_id}`}>more info</Link>
                             </div>
                         )
                     })
