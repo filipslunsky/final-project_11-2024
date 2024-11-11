@@ -5,6 +5,7 @@ const path = require("path");
 const usersRouter = require('./routes/usersRouter.js');
 const habitsRouter = require('./routes/habitsRouter.js');
 const logsRouter = require('./routes/logsRouter.js');
+const rewardsRouter = require('./routes/rewardsRouter.js');
 
 require('./jobs/cronJobs.js');
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/user', usersRouter);
 app.use('/habits', habitsRouter);
 app.use('/logs', logsRouter);
+app.use('/rewards', rewardsRouter);
 
 app.use(express.static(path.join(__dirname, "/client/build")));
 app.get("*", (req, res) => {
