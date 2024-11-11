@@ -10,6 +10,7 @@ import './habits.css';
 const Habits: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const habits = useSelector((state: RootState) => state.habits.habits);
+    const user = useSelector((state: RootState) => state.user.user);
     const addLogStatus = useSelector((state: RootState) => state.logs.addLogStatus);
     const deleteLogStatus = useSelector((state: RootState) => state.logs.deleteLogStatus);
 
@@ -32,13 +33,13 @@ const Habits: React.FC = () => {
 
     const handleCompleteHabit = (habitId: number) => {
         const date = getCurrentDate();
-        const logItem = { habitId, date };
+        const logItem = { habitId, date, email: user?.email };
         dispatch(addLog(logItem));
     };
 
     const handleUncompleteHabit = (habitId: number) => {
         const date = getCurrentDate();
-        const logItem = { habitId, date };
+        const logItem = { habitId, date, email: user?.email };
         dispatch(deleteLog(logItem));
     };
 

@@ -11,6 +11,7 @@ import Calendar from "../habitLogs/Calendar.tsx";
 const HabitDetail: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const habits = useSelector((state: RootState) => state.habits.habits);
+    const user = useSelector((state: RootState) => state.user.user);
     const { id } = useParams<{ id: string }>();
     const status = useSelector((state: RootState) => state.habits.deleteStatus);
     const navigate = useNavigate();
@@ -40,13 +41,13 @@ const HabitDetail: React.FC = () => {
 
     const handleCompleteHabit = (habitId: number) => {
         const date = getCurrentDate();
-        const logItem = { habitId, date };
+        const logItem = { habitId, date, email: user?.email };
         dispatch(addLog(logItem));
     };
 
     const handleUncompleteHabit = (habitId: number) => {
         const date = getCurrentDate();
-        const logItem = { habitId, date };
+        const logItem = { habitId, date, email: user?.email };
         dispatch(deleteLog(logItem));
     };
 

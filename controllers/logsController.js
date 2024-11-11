@@ -4,8 +4,19 @@ const {
     _deleteLog,
 } = require('../models/logsModel.js');
 
+const { addDailyRewardsToUser } = require('../jobs/dailyRewardsJob.js');
+const { addWeeklyRewardsToUser } = require('../jobs/weeklyRewardsJob');
+
 const addNewLog = async (req, res) => {
-    const { habitId, date } = req.body;
+    const { habitId, date, email } = req.body;
+    try {
+        await addDailyRewardsToUser(email);
+    await addWeeklyRewardsToUser(email);
+    } catch (error) {
+        console.log(error);
+    }
+    
+    
     try {
         const data = await _addNewLog(habitId, date);
         if (data.success) {

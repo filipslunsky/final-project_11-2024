@@ -49,7 +49,7 @@ const Login: React.FC = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
                 <h4>You don't have an account yet?</h4>
-                <Link className="form-link" to='/user/register'>CREATE ACCOUNT</Link>
+                <Link to='/user/register'>CREATE ACCOUNT</Link>
             </div>
         </>
     );
