@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store.ts";
 import { getLogs } from './state/slice.ts';
@@ -16,10 +16,15 @@ const History: React.FC<HistoryProps> = ({ habitId }) => {
         dispatch(getLogs(habitId));
     }, [dispatch, habitId]);
 
-    const data = logs.map(log => ({
-        date: new Date(log.date).toISOString().split('T')[0],
-        y: 1
-    }));
+    const data = logs.map(log => {
+        // Fix: Use UTC to parse and format the date consistently
+        const date = new Date(log.date);
+        const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())); // Ensure UTC date
+        return {
+            date: utcDate.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+            done: 1
+        };
+    });
 
     return (
         <>
@@ -33,7 +38,12 @@ const History: React.FC<HistoryProps> = ({ habitId }) => {
                                 dataKey="date"
                                 type="category"
                             />
-                            <YAxis dataKey="y" hide domain={[0, 2]} />
+                            <YAxis dataKey="done" hide domain={[0, 2]} />
+                            <Tooltip
+                                formatter={(value, name) => 
+                                    name === "date" ? value : value
+                                }
+                            />
                             <Scatter data={data} fill="#8884d8" />
                         </ScatterChart>
                     </ResponsiveContainer>

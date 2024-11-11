@@ -6,6 +6,7 @@ import { getHabits, deleteHabit, resetDeleteHabitStatus } from './state/slice.ts
 import History from "../habitLogs/History.tsx";
 import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
 import './habitDetail.css';
+import Calendar from "../habitLogs/Calendar.tsx";
 
 const HabitDetail: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -83,6 +84,7 @@ const HabitDetail: React.FC = () => {
                             <button className="undone-button" onClick={() => handleUncompleteHabit(Number(id))}>undo</button>
                         }
                         <History habitId={habit.habit_id} />
+                        <Calendar habitId={habit.habit_id} />
                     </div>
                 ) : (
                     <p>Habit not found.</p>
