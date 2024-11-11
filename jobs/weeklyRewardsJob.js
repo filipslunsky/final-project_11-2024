@@ -95,8 +95,10 @@ const calculateWeeklyRewards = (totalWeeklyStreaks) => {
     } else if (streak4 >= 3) {
         rewards.push({frequency: 'weekly', rewardType: 'silver', symbol: 4});
     } else if (streak4 >= 1) {
-        rewards.push({frequency: 'weekly', rewardType: 'bronze', symbol: 4})week};
+        rewards.push({frequency: 'weekly', rewardType: 'bronze', symbol: 4});
+    };
     return rewards;
+
 };
 
 const listRewards = async (email) => {
