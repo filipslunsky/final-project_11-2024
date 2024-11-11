@@ -32,13 +32,14 @@
 .food, .fitness, .make.good.habit, .break.bad.habit {
     margin: 15px 20px 10px 20px;
     min-width: 370px;
-    max-height: 400px;
+    min-height: 250px;
     border-radius: 15px;
     cursor: pointer;
 }
 
 .food:hover, .fitness:hover, .make.good.habit:hover, .break.bad.habit:hover {
     box-shadow: 0 25px 25px rgba(0, 0, 0, 0.2);
+    margin: 15px
 }
 
 .food {

@@ -16,13 +16,11 @@ const Calendar: React.FC<CalendarProps> = ({ habitId }) => {
         dispatch(getLogs(habitId));
     }, [dispatch, habitId]);
 
-    // Fix: Use UTC parsing to ensure date consistency
     const logDates = new Set(
         logs.map(log => {
             const date = new Date(log.date); 
-            // Convert the date to UTC by setting the time to midnight UTC
             const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-            return utcDate.toISOString().split('T')[0];  // Format it to YYYY-MM-DD
+            return utcDate.toISOString().split('T')[0];
         })
     );
 
@@ -30,7 +28,6 @@ const Calendar: React.FC<CalendarProps> = ({ habitId }) => {
     const daysArray = Array.from({ length: 30 }, (_, i) => {
         const date = new Date(today);
         date.setDate(today.getDate() - i);
-        // Ensure the generated date is also in UTC
         const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
         return utcDate.toISOString().split('T')[0];
     }).reverse();
