@@ -27,10 +27,28 @@ const _getAllRewardsByEmail = async (email) => {
         });
     } catch (error) {
         console.error('Transaction error:', error);
-        return { success: false, message: `Error retrieving habits: ${error.message}` };
+        return { success: false, message: `Error retrieving rewards: ${error.message}` };
     }
+};
+
+const _getAllRewards = async () => {
+    try {
+            const rewards = await db('rewards')
+                .select(
+                    'reward_id',
+                    'symbol',
+                    'frequency',
+                    'reward_type',
+                    'reward_group'
+                );
+            return { success: true, rewards };
+        } catch (error) {
+        console.error('Transaction error:', error);
+        return { success: false, message: `Error retrieving rewards: ${error.message}` };
+    };
 };
 
 module.exports = {
     _getAllRewardsByEmail,
+    _getAllRewards,
 };
