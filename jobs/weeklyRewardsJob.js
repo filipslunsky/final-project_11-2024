@@ -152,5 +152,5 @@ const addWeeklyRewardsToUser = async (email) => {
 };
 
 module.exports = {
-    addDailyRewardsToUser,
+    addWeeklyRewardsToUser,
 };
