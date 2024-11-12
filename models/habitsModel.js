@@ -56,7 +56,7 @@ const _getAllHabitsByEmail = async (email) => {
                     'habit_streaks.completed'
                 )
                 .join('habit_streaks', 'habit_streaks.habit_id', 'habits.habit_id')
-                .where({ 'habits.user_id': userId.user_id });
+                .where({ 'habits.user_id': userId.user_id }).orderBy('habits.habit_id');
             return { success: true, habits };
         });
     } catch (error) {
