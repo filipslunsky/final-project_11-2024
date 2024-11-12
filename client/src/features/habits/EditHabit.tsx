@@ -22,7 +22,7 @@ const EditHabit: React.FC = () => {
 
     const handleSave = () => {
         if (nameRef.current && categoryRef.current && frequencyRef.current) {
-            if (nameRef.current.value === '') {
+            if (nameRef.current.value === '' || categoryRef.current.value === '' || frequencyRef.current.value === '') {
                 return;
             };
             const editItem = {
@@ -59,14 +59,14 @@ const EditHabit: React.FC = () => {
         <div className="form-container">
             <h2>Edit</h2>
             <h2>"{habit.name}"</h2>
-            <input className="form-input" ref={nameRef} type="text" name="name" placeholder="new task name" />
+            <input className="form-input" value={habit.name} ref={nameRef} type="text" name="name" placeholder="new task name" />
             <select className="form-input" ref={frequencyRef} name="frequency">
-                <option value="" disabled>select new frequency</option>
+                <option value="" disabled selected>select new frequency</option>
                 <option value="daily">daily</option>
                 <option value="weekly">weekly</option>
             </select>
             <select className="form-input" ref={categoryRef} name="category">
-                <option value="" disabled>select new category</option>
+                <option value="" disabled selected>select new category</option>
                 <option value="food">food</option>
                 <option value="fitness">fitness</option>
                 <option value="make good habit">make good habit</option>

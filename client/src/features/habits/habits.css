@@ -43,23 +43,23 @@
 }
 
 .food {
-    border: 1px solid orange;
-    box-shadow: 0 15px 15px rgba(255, 165, 0, 0.2);
+    border: 3px solid rgb(213, 140, 3);
+    box-shadow: 0 15px 15px rgba(213, 140, 3, 0.2);
 }
 
 .fitness {
-    border: 1px solid blue;
+    border: 3px solid blue;
     box-shadow: 0 15px 15px rgba(0, 0, 255, 0.2);
 }
 
 .make.good.habit {
-    border: 1px solid yellow;
-    box-shadow: 0 15px 15px rgba(0, 128, 0, 0.2);
+    border: 3px solid rgb(255, 255, 0);
+    box-shadow: 0 15px 15px rgba(255, 255, 0, 0.2);
 }
 
 .break.bad.habit {
-    border: 1px solid purple;
-    box-shadow: 0 15px 15px rgba(255, 0, 0, 0.2);
+    border: 3px solid black;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
 }
 
 .add-habit {

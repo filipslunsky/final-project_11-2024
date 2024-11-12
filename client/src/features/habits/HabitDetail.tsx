@@ -94,7 +94,7 @@ const HabitDetail: React.FC = () => {
                     ?
                     <div>
                         <h3>Are you sure you want to give up - {habit?.name}?</h3>
-                        <button className="yes" onClick={handleDelete}>Yes, I give up...</button>
+                        <button className="yes" onClick={handleDelete}>Yes, I give up.</button>
                         <button className="no" onClick={handleAbort}>No, I will keep trying!</button>
                     </div>
                     :

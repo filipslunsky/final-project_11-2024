@@ -20,7 +20,7 @@ const Login: React.FC = () => {
         setError(null);
         try {
             await dispatch(loginUser({ email, password })).unwrap();
-            navigate('/habits')
+            navigate('/dashboard')
         } catch (error: any) {
             setError(error.message);
         }
