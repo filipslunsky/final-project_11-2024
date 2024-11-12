@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
             <h2>Welcome back, {user?.firstName} {user?.lastName}</h2>
             <p>{currentDate}</p>
             <p className="motivation-phrase">Are you ready to take a few steps today to get your life better, {user?.firstName}?</p>
-            <h3>{user?.firstName}'s Habits:</h3>
+            <h3>{user?.firstName}'s Habits</h3>
             <div className="habit-small-container">
                 {
                     habits.map(habit => {

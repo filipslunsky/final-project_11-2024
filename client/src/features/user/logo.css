@@ -1,0 +1,15 @@
+.logo {
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    margin-left: 15px;
+}
+
+.logo-one {
+    color:  rgb(39, 153, 224);
+}
+
+.logo-two {
+    color:  rgb(2, 72, 116);
+}
