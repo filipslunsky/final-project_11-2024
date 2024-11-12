@@ -1,9 +1,9 @@
 .logo {
     font-size: 25px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    font-style: italic;
-    margin-left: 15px;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 15px;
 }
 
 .logo-one {
