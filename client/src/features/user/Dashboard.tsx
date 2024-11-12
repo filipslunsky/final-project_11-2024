@@ -35,14 +35,16 @@ const Dashboard: React.FC = () => {
             <h2>Welcome back, {user?.firstName} {user?.lastName}</h2>
             <p>{currentDate}</p>
             <p className="motivation-phrase">Are you ready to take a few steps today to make your life better, {user?.firstName}?</p>
+            
             <div className="dashboard-streak-container">
                 <h3>{user?.firstName}'s Streaks</h3>
+                <p className="motivation-phrase">{highestStreakMax === highestStreakCurrent ? `You are about to make your new personal best, ${user?.firstName}, nice going!` : `Keep going, ${user?.firstName} and you will beat your record again!`}</p>
                 <p>All time longest streak: {highestStreakMax}</p>
                 <p>Current longest streak: {highestStreakCurrent}</p>
-                <p className="motivation-phrase">{highestStreakMax === highestStreakCurrent ? `You are about to make your new personal best, ${user?.firstName}, nice going!` : `Keep going, ${user?.firstName} and you will beat your record again!`}</p>
             </div>
             <div className="dashboard-habits-container">
                 <h3>{user?.firstName}'s Habits</h3>
+                <p className="motivation-phrase">{allHabitsCompleted ? `You are finished for now, way to go, ${user?.firstName}!` : `There is still work to be done, ${user?.firstName}, don't give up!`}</p>
                 <div className="habit-small-container">
                     {
                         habits.map(habit => {
@@ -56,7 +58,6 @@ const Dashboard: React.FC = () => {
                         })
                     }
                 </div>
-                <p className="motivation-phrase">{allHabitsCompleted ? `You are finished for now, way to go, ${user?.firstName}!` : `There is still work to be done, ${user?.firstName}, don't give up!`}</p>
             </div> 
         </>
     );

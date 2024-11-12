@@ -16,7 +16,7 @@ const Habit: React.FC<HabitProps> = (props) => {
         <p>Category: {props.category}</p>
         <p>Frequency: {props.frequency}</p>
         <p>Current Streak: {props.currentStreak}</p>
-        <p>Completed: {props.completed ? "Yes" : "No"}</p>
+        <p>Complete: {props.completed ? "Yes" : "No"}</p>
     </>
     );
 }

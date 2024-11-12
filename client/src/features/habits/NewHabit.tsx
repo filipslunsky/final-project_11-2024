@@ -42,7 +42,7 @@ const NewHabit: React.FC = () => {
         <>
             <div className="form-container">
                 <h2>Add New Habit</h2>
-                <input className="form-input" ref={nameRef} type="text" name="name" placeholder="task name" />
+                <input className="form-input" ref={nameRef} type="text" name="name" placeholder="habit name" />
                 <select className="form-input" ref={frequencyRef} name="frequency">
                     <option value="" disabled>select frequency</option>
                     <option value="daily">daily</option>
