@@ -1,0 +1,29 @@
+.habit-small-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.habit-small {
+    padding: 5px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 15px;
+    min-width: 200px;
+}
+
+.motivation-phrase {
+    font-size: 15px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.done-mini {
+    background: linear-gradient(to left, rgb(131, 192, 119) 0%, rgb(176, 193, 176) 50%, rgb(131, 192, 119) 100%);
+}
+
+.undone-mini {
+    background: linear-gradient(to left, rgb(197, 54, 54) 0%, rgb(215, 174, 174) 50%, rgb(197, 54, 54) 100%);
+}

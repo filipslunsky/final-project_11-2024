@@ -19,9 +19,9 @@ const calculateTotalDailyStreaks = async (email) => {
                 streak100++;
             case max_streak >= 30:
                 streak30++;
-            case max_streak >= 2:
+            case max_streak >= 7:
                 streak7++;
-            case max_streak >= 1:
+            case max_streak >= 3:
                 streak3++;
                 break;
             default:

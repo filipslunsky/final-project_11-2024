@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store.ts";
 import { getHabits, deleteHabit, resetDeleteHabitStatus } from './state/slice.ts';
-import History from "../habitLogs/History.tsx";
 import { addLog, deleteLog } from "../habitLogs/state/slice.ts";
 import './habitDetail.css';
 import Calendar from "../habitLogs/Calendar.tsx";
@@ -85,7 +84,6 @@ const HabitDetail: React.FC = () => {
                             <button className="undone-button" onClick={() => handleUncompleteHabit(Number(id))}>undo</button>
                         }
                         <Calendar habitId={habit.habit_id} />
-                        <History habitId={habit.habit_id} />
                     </div>
                 ) : (
                     <p>Habit not found.</p>
