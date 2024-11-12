@@ -9,6 +9,7 @@ const Navbar: React.FC = () => {
     return (
         <>
                 <div className="nav-container">
+                    <Link to={'/dashboard'} className="nav-item">Dashboard</Link>
                     <Link to={'/habits'} className="nav-item">Habits</Link>
                     <Link to={'/rewards'} className="nav-item">Rewards</Link>
                     <Link to={'/user'} className="nav-item">{user.user?.firstName} {user.user?.lastName}</Link>

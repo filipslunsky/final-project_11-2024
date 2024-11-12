@@ -14,6 +14,7 @@ import Home from './features/user/Home.tsx';
 import Login from './features/user/Login.tsx';
 import Register from './features/user/Register.tsx';
 import Rewards from './features/rewards/Rewards.tsx';
+import Dashboard from './features/user/Dashboard.tsx';
 
 function App() {
   const isLoggedIn = useSelector((state: RootState) => state.user.loggedIn);
@@ -33,6 +34,7 @@ function App() {
             <Route path='/habits/edit/:id' element={<EditHabit />} />
             <Route path='/user' element={<User />} />
             <Route path='/rewards' element={<Rewards />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/user/edit' element={<EditUser />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
