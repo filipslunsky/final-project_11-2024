@@ -12,6 +12,7 @@
     border: 1px solid black;
     border-radius: 15px;
     min-width: 200px;
+    box-shadow: 10px 10px 10px rgba(100, 129, 180, 0.2);
 }
 
 .motivation-phrase {
@@ -26,4 +27,11 @@
 
 .undone-mini {
     background: linear-gradient(to left, rgb(197, 54, 54) 0%, rgb(215, 174, 174) 50%, rgb(197, 54, 54) 100%);
+}
+
+.dashboard-streak-container, .dashboard-habits-container {
+    border: 1px solid black;
+    margin: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 15px 15px 15px rgba(100, 129, 180, 0.2);
 }

@@ -53,12 +53,12 @@
 }
 
 .make.good.habit {
-    border: 1px solid green;
+    border: 1px solid yellow;
     box-shadow: 0 15px 15px rgba(0, 128, 0, 0.2);
 }
 
 .break.bad.habit {
-    border: 1px solid red;
+    border: 1px solid purple;
     box-shadow: 0 15px 15px rgba(255, 0, 0, 0.2);
 }
 

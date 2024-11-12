@@ -35,25 +35,30 @@ const Dashboard: React.FC = () => {
             <h2>Welcome back, {user?.firstName} {user?.lastName}</h2>
             <p>{currentDate}</p>
             <p className="motivation-phrase">Are you ready to take a few steps today to get your life better, {user?.firstName}?</p>
-            <h3>{user?.firstName}'s Habits</h3>
-            <div className="habit-small-container">
-                {
-                    habits.map(habit => {
-                        return (
-                            <div className={`habit-small ${habit.completed ? 'done-mini' : 'undone-mini'}`} key={habit.habit_id}>
-                                <p>{habit.name}</p>
-                                <p>{habit.completed ? "done" : "undone"}</p>
-                                <p>{habit.current_streak} {habit.frequency === 'daily' ? 'day' : 'week'}{habit.current_streak !== 1 ? 's' : ''}</p>
-                            </div>
-                        )
-                    })
-                }
+            <div className="dashboard-habits-container">
+                <h3>{user?.firstName}'s Habits</h3>
+                <div className="habit-small-container">
+                    {
+                        habits.map(habit => {
+                            return (
+                                <div className={`habit-small ${habit.completed ? 'done-mini' : 'undone-mini'}`} key={habit.habit_id}>
+                                    <p>{habit.name}</p>
+                                    <p>{habit.completed ? "done" : "undone"}</p>
+                                    <p>{habit.current_streak} {habit.frequency === 'daily' ? 'day' : 'week'}{habit.current_streak !== 1 ? 's' : ''}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <p className="motivation-phrase">{allHabitsCompleted ? `You are finished for now, way to go, ${user?.firstName}!` : `There is still work to be done, ${user?.firstName}, don't give up!`}</p>
             </div>
-            <p className="motivation-phrase">{allHabitsCompleted ? `You are finished for now, way to go, ${user?.firstName}!` : `There is still work to be done, ${user?.firstName}, don't give up!`}</p>
-            <h4>{user?.firstName}'s Streaks</h4>
-            <p>All time longest streak: {highestStreakMax}</p>
-            <p>Current longest streak: {highestStreakCurrent}</p>
-            <p className="motivation-phrase">{highestStreakMax === highestStreakCurrent ? `You are about the make new personal best, ${user?.firstName}, nice going!` : `Keep going, ${user?.firstName} and you will beat your record again!`}</p>
+            
+            <div className="dashboard-streak-container">
+                <h4>{user?.firstName}'s Streaks</h4>
+                <p>All time longest streak: {highestStreakMax}</p>
+                <p>Current longest streak: {highestStreakCurrent}</p>
+                <p className="motivation-phrase">{highestStreakMax === highestStreakCurrent ? `You are about the make new personal best, ${user?.firstName}, nice going!` : `Keep going, ${user?.firstName} and you will beat your record again!`}</p>
+            </div>
         </>
     );
 }
