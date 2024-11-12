@@ -1,6 +1,8 @@
 import React from "react";
+import './reward.css';
 
 interface RewardProps {
+    status: string;
     rewardId: number;
     symbol: number;
     frequency: string;
@@ -9,13 +11,29 @@ interface RewardProps {
 };
 
 const Reward: React.FC<RewardProps> = (props) => {
+    let typeConversion: string = '';
+    if (props.rewardType === 'bronze') {
+        typeConversion = 'one habit streak';
+    } else if (props.rewardType === 'silver') {
+        typeConversion = 'three habit streaks';
+    } else {
+        typeConversion = 'ten habit streaks';
+    };
+
     return (
     <>
-        <h3>{props.rewardId}</h3>
-        <p>Category: {props.symbol}</p>
-        <p>Frequency: {props.frequency}</p>
-        <p>Current Streak: {props.rewardType}</p>
-        <p>Completed: {props.rewardGroup}</p>
+        <div className="main-container">
+            <div className={props.status}>
+                <p className="number">{props.symbol}</p>
+                <p className="unit">{props.frequency === 'daily' ? 'DAYS' : 'WEEKS'}</p>
+                <p className="type">{props.rewardType}</p>
+            </div>
+            <p className="info">
+                {`for keeping ${typeConversion}`}
+                <br />
+                {`unbroken for ${props.symbol} ${props.frequency === 'daily' ? 'days' : 'weeks'}`}
+                </p>
+        </div>
     </>
     );
 }

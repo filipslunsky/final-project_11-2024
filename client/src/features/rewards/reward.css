@@ -1,0 +1,55 @@
+.number, .unit {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.type {
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.unrecieved {
+    width: 200px;
+    height: 230px;
+    color: rgb(228, 228, 228);
+    border: 3px solid rgb(228, 228, 228);
+    border-radius: 10px 10px 125px 125px;
+    margin: 30px 50px;
+}
+
+.bronze {
+    width: 200px;
+    height: 230px;
+    color: rgb(205, 127, 50);
+    border: 3px solid rgb(205, 127, 50);
+    border-radius: 10px 10px 125px 125px;
+    margin: 30px 50px;
+    background: linear-gradient(to left, rgb(200, 152, 103) 0%, rgb(206, 204, 201) 50%, rgb(200, 152, 103) 100%);
+    box-shadow: 25px 25px 25px rgba(205, 127, 50, 0.4);
+}
+
+.silver {
+    width: 200px;
+    height: 230px;
+    color: rgb(100, 129, 180);
+    border: 3px solid rgb(100, 129, 180);
+    border-radius: 10px 10px 125px 125px;
+    margin: 30px 50px;
+    background: linear-gradient(to left, rgb(100, 122, 161) 0%, rgb(197, 206, 223) 50%, rgb(100, 122, 161) 100%);
+    box-shadow: 25px 25px 25px rgba(100, 129, 180, 0.4);
+}
+
+.gold {
+    width: 200px;
+    height: 230px;
+    color: rgb(255, 215, 0);
+    border: 3px solid rgb(255, 215, 0);
+    border-radius: 10px 10px 125px 125px;
+    margin: 30px 50px;
+    background: linear-gradient(to left, rgb(224, 198, 120) 0%, rgb(251, 250, 242) 50%, rgb(224, 198, 120) 100%);
+    box-shadow: 25px 25px 25px rgba(255, 215, 0, 0.4);
+}
+
+.info {
+    color: grey
+}
