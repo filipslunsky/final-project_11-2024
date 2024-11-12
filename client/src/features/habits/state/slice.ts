@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const HABITS_URL = 'http://127.0.0.1:3001/habits';
+const HABITS_URL = `${import.meta.env.VITE_API_URL}/habits`;
 
 interface Habit {
   habit_id: number;

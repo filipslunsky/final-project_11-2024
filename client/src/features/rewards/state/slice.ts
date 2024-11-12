@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const REWARDS_URL = 'http://127.0.0.1:3001/rewards';
+const REWARDS_URL = `${import.meta.env.VITE_API_URL}/rewards`;
 
 interface Reward {
     reward_id: number;

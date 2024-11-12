@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const LOGS_URL = 'http://127.0.0.1:3001/logs';
+const LOGS_URL = `${import.meta.env.VITE_API_URL}/logs`;
 
 interface Log {
   log_id: number;

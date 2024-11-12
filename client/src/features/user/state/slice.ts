@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const USER_URL = 'http://127.0.0.1:3001/user';
+const USER_URL = `${import.meta.env.VITE_API_URL}/user`;
 
 interface User {
     firstName: string;
